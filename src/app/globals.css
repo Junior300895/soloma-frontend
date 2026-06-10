@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy: #0A1628;
+    --navy-light: #1E3A5F;
+    --orange: #E8601C;
+    --orange-dark: #C94D10;
+    --steel: #8A9BB0;
+    --light: #F4F6F9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-[#F4F6F9] text-[#0D1B2A] antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark
+           text-white font-semibold px-6 py-3 rounded-sm transition-colors duration-200
+           text-sm tracking-wide uppercase;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-white/40 hover:border-white
+           text-white font-medium px-6 py-3 rounded-sm transition-colors duration-200 text-sm;
+  }
+
+  .btn-navy {
+    @apply inline-flex items-center gap-2 bg-navy hover:bg-navy-light
+           text-white font-semibold px-6 py-3 rounded-sm transition-colors duration-200 text-sm;
+  }
+
+  .section-tag {
+    @apply text-brand-orange font-semibold text-xs tracking-[0.2em] uppercase;
+  }
+
+  .section-title {
+    @apply font-display font-bold text-navy text-3xl md:text-4xl uppercase leading-tight tracking-wide;
+  }
+
+  .section-title-white {
+    @apply font-display font-bold text-white text-3xl md:text-4xl uppercase leading-tight tracking-wide;
+  }
+
+  .card {
+    @apply bg-white rounded-sm shadow-sm border border-navy/5
+           hover:shadow-md hover:-translate-y-1 transition-all duration-200;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-navy/20 rounded-sm
+           focus:outline-none focus:border-brand-orange bg-white
+           text-navy placeholder:text-steel text-sm transition-colors;
+  }
+
+  .status-available {
+    @apply inline-flex items-center gap-1.5 text-emerald-600 font-medium text-xs;
+  }
+  .status-reserved {
+    @apply inline-flex items-center gap-1.5 text-amber-500 font-medium text-xs;
+  }
+  .status-maintenance {
+    @apply inline-flex items-center gap-1.5 text-red-500 font-medium text-xs;
+  }
+}
