@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { formatDate } from '@/lib/utils';
-import { Plus, Eye, Trash2, AlertTriangle } from 'lucide-react';
+import { Plus, Eye, Pencil, Trash2, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function AdminProjetsPage() {
@@ -80,6 +80,10 @@ export default function AdminProjetsPage() {
                       <Link href={`/realisations/${p.id}`} target="_blank"
                         className="p-1.5 text-steel hover:text-navy hover:bg-navy/5 rounded-sm transition-colors" title="Voir">
                         <Eye size={14} />
+                      </Link>
+                      <Link href={`/admin/projets/${p.id}/modifier`}
+                        className="p-1.5 text-steel hover:text-brand-orange hover:bg-orange-50 rounded-sm transition-colors" title="Modifier">
+                        <Pencil size={14} />
                       </Link>
                       <button onClick={() => setDeleteId(p.id)}
                         className="p-1.5 text-steel hover:text-red-500 hover:bg-red-50 rounded-sm transition-colors" title="Supprimer">

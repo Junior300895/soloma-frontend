@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, Construction, FileText,
-  FolderOpen, Mail, Newspaper, LogOut, ExternalLink,
+  FolderOpen, Mail, Newspaper, LogOut, ExternalLink, Wrench,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
@@ -13,6 +13,7 @@ const navItems = [
   { href: '/admin/grues', label: 'Grues', icon: Construction },
   { href: '/admin/devis', label: 'Devis', icon: FileText },
   { href: '/admin/projets', label: 'Projets', icon: FolderOpen },
+  { href: '/admin/services', label: 'Services', icon: Wrench },
   { href: '/admin/messages', label: 'Messages', icon: Mail },
   { href: '/admin/blog', label: 'Blog', icon: Newspaper },
 ];
