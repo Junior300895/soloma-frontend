@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Loader2, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { api } from '@/lib/api';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 import type { Crane } from '@/types';
 
 const schema = z.object({
@@ -28,7 +29,7 @@ export function CraneForm({ crane }: CraneFormProps) {
   const queryClient = useQueryClient();
   const isEditing = !!crane;
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: crane ? {
       model: crane.model,
@@ -90,9 +91,11 @@ export function CraneForm({ crane }: CraneFormProps) {
         </Field>
       </div>
 
-      <Field label="URL de l'image" error={errors.imageUrl?.message}>
-        <input {...register('imageUrl')} placeholder="https://..." className="input-field" />
-      </Field>
+      <ImageUpload
+        label="Image de la grue"
+        value={watch('imageUrl')}
+        onChange={(url) => setValue('imageUrl', url, { shouldValidate: true })}
+      />
 
       <Field label="Description" error={errors.description?.message}>
         <textarea {...register('description')} rows={4} placeholder="Description de la grue..." className="input-field resize-none" />

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import { Loader2, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 
 const schema = z.object({
   title: z.string().min(3, 'Titre requis'),
@@ -84,11 +85,11 @@ export default function NouvelArticlePage() {
             <textarea {...register('content')} rows={12} placeholder="Contenu de l'article (HTML supporté)..." className="input-field resize-none font-mono text-xs" />
           </div>
 
-          <div>
-            <label className="block text-xs font-semibold text-navy uppercase tracking-wider mb-1.5">Image de couverture (URL)</label>
-            <input {...register('coverImage')} placeholder="https://..." className="input-field" />
-            {errors.coverImage && <p className="text-red-500 text-xs mt-1">{errors.coverImage.message}</p>}
-          </div>
+          <ImageUpload
+            label="Image de couverture"
+            value={watch('coverImage')}
+            onChange={(url) => setValue('coverImage', url, { shouldValidate: true })}
+          />
 
           <div>
             <label className="block text-xs font-semibold text-navy uppercase tracking-wider mb-1.5">Statut</label>
