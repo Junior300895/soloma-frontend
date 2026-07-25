@@ -13,6 +13,7 @@ interface ImageUploadProps {
 export function ImageUpload({ value, onChange, label = 'Image' }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const [removing, setRemoving] = useState(false);
 
   async function handleFile(file: File) {
     if (!file.type.startsWith('image/')) {
@@ -41,6 +42,19 @@ export function ImageUpload({ value, onChange, label = 'Image' }: ImageUploadPro
     }
   }
 
+  async function handleRemove() {
+    if (!value) return;
+    setRemoving(true);
+    try {
+      await api.delete('/upload', { data: { url: value } });
+    } catch {
+      // Si la suppression Cloudinary échoue, on efface quand même l'URL localement
+    } finally {
+      onChange('');
+      setRemoving(false);
+    }
+  }
+
   function handleDrop(e: React.DragEvent) {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -58,16 +72,19 @@ export function ImageUpload({ value, onChange, label = 'Image' }: ImageUploadPro
             <button
               type="button"
               onClick={() => inputRef.current?.click()}
+              disabled={removing}
               className="bg-white text-navy px-3 py-1.5 rounded-sm text-xs font-medium flex items-center gap-1.5 shadow"
             >
               <Upload size={13} /> Changer
             </button>
             <button
               type="button"
-              onClick={() => onChange('')}
-              className="bg-red-500 text-white px-3 py-1.5 rounded-sm text-xs font-medium flex items-center gap-1.5 shadow"
+              onClick={handleRemove}
+              disabled={removing}
+              className="bg-red-500 text-white px-3 py-1.5 rounded-sm text-xs font-medium flex items-center gap-1.5 shadow disabled:opacity-60"
             >
-              <X size={13} /> Retirer
+              {removing ? <Loader2 size={13} className="animate-spin" /> : <X size={13} />}
+              {removing ? 'Suppression...' : 'Retirer'}
             </button>
           </div>
         </div>
