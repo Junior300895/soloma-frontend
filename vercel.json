@@ -1,8 +1,10 @@
 {
   "framework": "nextjs",
   "regions": ["cdg1"],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "https://soloma-backend.onrender.com",
-    "NEXT_PUBLIC_WHATSAPP": "@next_public_whatsapp"
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://soloma-backend.onrender.com/v1",
+      "NEXT_PUBLIC_WHATSAPP": "773012470"
+    }
   }
 }
