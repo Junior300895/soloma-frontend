@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { MapPin, Calendar, Building2, ChevronRight, Play } from 'lucide-react';
+import { MapPin, Calendar, Building2, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ProjetDetailPage({ params }: { params: { id: string } }) {
@@ -117,15 +117,17 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
                 <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide mb-4">Vidéos</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {videos.map((video) => (
-                    <div key={video.id} className="relative aspect-video bg-navy rounded-sm overflow-hidden group cursor-pointer">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-brand-orange/90 flex items-center justify-center
-                                        group-hover:scale-110 transition-transform">
-                          <Play size={22} className="text-white ml-1" />
-                        </div>
+                    <div key={video.id} className="space-y-1.5">
+                      <div className="relative aspect-video bg-navy rounded-sm overflow-hidden">
+                        <video
+                          src={video.url}
+                          controls
+                          preload="metadata"
+                          className="w-full h-full object-contain bg-black"
+                        />
                       </div>
                       {video.caption && (
-                        <p className="absolute bottom-3 left-3 text-white/70 text-xs">{video.caption}</p>
+                        <p className="text-steel text-xs">{video.caption}</p>
                       )}
                     </div>
                   ))}
