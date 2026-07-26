@@ -4,16 +4,17 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 
 export function AdminGuard({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, hasHydrated } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (hasHydrated && !isAuthenticated) {
       router.replace('/admin/login');
     }
-  }, [isAuthenticated, router]);
+  }, [hasHydrated, isAuthenticated, router]);
 
-  if (!isAuthenticated) {
+  // Attendre la réhydratation du store avant de décider
+  if (!hasHydrated || !isAuthenticated) {
     return (
       <div className="min-h-screen bg-navy flex items-center justify-center">
         <div className="w-8 h-8 border-2 border-brand-orange border-t-transparent rounded-full animate-spin" />
