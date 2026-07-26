@@ -8,17 +8,16 @@ import { Loader2, Save, ImagePlus, Trash2, Video, X, Check } from 'lucide-react'
 import toast from 'react-hot-toast';
 import { ImageUpload } from '@/components/admin/ImageUpload';
 
-type MediaDraft = { type: 'photo'; file: File; preview: string; caption: string } | { type: 'video'; url: string; caption: string };
+type MediaDraft = { type: 'photo' | 'video'; file: File; preview: string; caption: string };
 
 export default function ModifierProjetPage() {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
   const [draft, setDraft] = useState<MediaDraft | null>(null);
   const [saving, setSaving] = useState(false);
-  const [videoTab, setVideoTab] = useState(false);
-  const [videoUrl, setVideoUrl] = useState('');
   const [caption, setCaption] = useState('');
 
   const { data, isLoading } = useQuery({
@@ -66,31 +65,29 @@ export default function ModifierProjetPage() {
   });
 
   function openPhotoPicker() {
-    setVideoTab(false);
     setCaption('');
     fileInputRef.current?.click();
   }
 
-  function openVideoModal() {
-    setVideoTab(true);
-    setVideoUrl('');
+  function openVideoPicker() {
     setCaption('');
-    setDraft({ type: 'video', url: '', caption: '' });
+    videoInputRef.current?.click();
   }
 
-  function onFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const preview = URL.createObjectURL(file);
-    setDraft({ type: 'photo', file, preview, caption: '' });
-    setCaption('');
-    e.target.value = '';
+  function onFileSelected(type: 'photo' | 'video') {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const preview = URL.createObjectURL(file);
+      setDraft({ type, file, preview, caption: '' });
+      setCaption('');
+      e.target.value = '';
+    };
   }
 
   function cancelDraft() {
-    if (draft?.type === 'photo') URL.revokeObjectURL(draft.preview);
+    if (draft) URL.revokeObjectURL(draft.preview);
     setDraft(null);
-    setVideoUrl('');
     setCaption('');
   }
 
@@ -98,22 +95,19 @@ export default function ModifierProjetPage() {
     if (!draft) return;
     setSaving(true);
     try {
-      if (draft.type === 'photo') {
-        const formData = new FormData();
-        formData.append('file', draft.file);
-        const uploadRes = await api.post('/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
-        const url = uploadRes.data?.data?.url ?? uploadRes.data?.url;
-        await api.post(`/projects/${id}/media`, { type: 'photo', url, caption });
-        URL.revokeObjectURL(draft.preview);
-      } else {
-        const url = videoUrl.trim();
-        if (!url) { toast.error('URL de la vidéo requise'); return; }
-        await api.post(`/projects/${id}/media`, { type: 'video', url, caption });
-      }
+      const formData = new FormData();
+      formData.append('file', draft.file);
+      const endpoint = draft.type === 'video' ? '/upload/video' : '/upload';
+      const uploadRes = await api.post(endpoint, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        timeout: draft.type === 'video' ? 300000 : 60000, // 5 min pour les vidéos
+      });
+      const url = uploadRes.data?.data?.url ?? uploadRes.data?.url;
+      await api.post(`/projects/${id}/media`, { type: draft.type, url, caption });
+      URL.revokeObjectURL(draft.preview);
       queryClient.invalidateQueries({ queryKey: ['project', id] });
       toast.success('Média ajouté');
       setDraft(null);
-      setVideoUrl('');
       setCaption('');
     } catch {
       toast.error('Erreur lors de l\'ajout');
@@ -203,14 +197,15 @@ export default function ModifierProjetPage() {
             <button type="button" onClick={openPhotoPicker} className="btn-primary text-xs py-2">
               <ImagePlus size={13} /> Photo
             </button>
-            <button type="button" onClick={openVideoModal}
+            <button type="button" onClick={openVideoPicker}
               className="flex items-center gap-1.5 px-3 py-2 border border-navy/20 rounded-sm text-xs text-steel hover:border-navy/40 hover:text-navy transition-colors">
               <Video size={13} /> Vidéo
             </button>
           </div>
         </div>
 
-        <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={onFileSelected} />
+        <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={onFileSelected('photo')} />
+        <input ref={videoInputRef} type="file" accept="video/*" className="hidden" onChange={onFileSelected('video')} />
 
         {(data?.media ?? []).length === 0 && !draft ? (
           <div className="border-2 border-dashed border-navy/15 rounded-sm p-8 text-center cursor-pointer hover:border-brand-orange/40 transition-colors"
@@ -225,9 +220,11 @@ export default function ModifierProjetPage() {
                 {m.type === 'photo' ? (
                   <img src={m.url} alt={m.caption || ''} className="w-full aspect-video object-cover" />
                 ) : (
-                  <div className="aspect-video flex flex-col items-center justify-center gap-1 bg-navy/8">
-                    <Video size={22} className="text-navy/40" />
-                    <span className="text-xs text-steel truncate max-w-full px-2">{m.caption || 'Vidéo'}</span>
+                  <div className="relative aspect-video bg-black">
+                    <video src={m.url} className="w-full h-full object-cover" muted preload="metadata" />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <Video size={22} className="text-white/80 drop-shadow" />
+                    </div>
                   </div>
                 )}
                 {m.caption && (
@@ -268,16 +265,7 @@ export default function ModifierProjetPage() {
             {draft.type === 'photo' ? (
               <img src={draft.preview} alt="Aperçu" className="w-full aspect-video object-cover rounded-sm bg-navy/5" />
             ) : (
-              <div>
-                <label className="block text-xs font-semibold text-navy uppercase tracking-wider mb-1.5">URL de la vidéo *</label>
-                <input
-                  type="url"
-                  value={videoUrl}
-                  onChange={(e) => setVideoUrl(e.target.value)}
-                  placeholder="https://youtube.com/watch?v=..."
-                  className="input-field"
-                />
-              </div>
+              <video src={draft.preview} controls className="w-full aspect-video object-cover rounded-sm bg-navy/5" />
             )}
 
             <div>
