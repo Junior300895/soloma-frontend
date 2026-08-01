@@ -41,43 +41,37 @@ export function ContactForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">
-            Nom complet <span className="text-brand-orange">*</span>
-          </label>
+          <label className="field-label">Nom complet <span className="text-brand-orange">*</span></label>
           <input {...register('fullName')} placeholder="Ibrahima Diallo" className="input-field" />
-          {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
+          {errors.fullName && <p className="field-error">{errors.fullName.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">
-            Email <span className="text-brand-orange">*</span>
-          </label>
+          <label className="field-label">Email <span className="text-brand-orange">*</span></label>
           <input {...register('email')} type="email" placeholder="i.diallo@example.com" className="input-field" />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+          {errors.email && <p className="field-error">{errors.email.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">Téléphone</label>
+          <label className="field-label">Téléphone</label>
           <input {...register('phone')} placeholder="+221 77 000 00 00" className="input-field" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">Sujet</label>
+          <label className="field-label">Sujet</label>
           <input {...register('subject')} placeholder="Demande de devis..." className="input-field" />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-navy mb-1">
-          Message <span className="text-brand-orange">*</span>
-        </label>
+        <label className="field-label">Message <span className="text-brand-orange">*</span></label>
         <textarea
           {...register('message')}
           rows={5}
           placeholder="Décrivez votre besoin..."
           className="input-field resize-none"
         />
-        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+        {errors.message && <p className="field-error">{errors.message.message}</p>}
       </div>
 
       <button type="submit" disabled={isPending} className="btn-primary w-full justify-center">

@@ -5,11 +5,12 @@ import { useAuth } from '@/hooks/useAuth';
 
 const titles: Record<string, string> = {
   '/admin': 'Tableau de bord',
-  '/admin/grues': 'Gestion des Grues',
-  '/admin/devis': 'Demandes de Devis',
-  '/admin/projets': 'Gestion des Projets',
+  '/admin/grues': 'Gestion des grues',
+  '/admin/devis': 'Demandes de devis',
+  '/admin/projets': 'Gestion des projets',
+  '/admin/services': 'Services',
   '/admin/messages': 'Messages',
-  '/admin/blog': 'Blog & Actualités',
+  '/admin/blog': 'Blog & actualités',
 };
 
 export function AdminTopbar() {
@@ -22,15 +23,18 @@ export function AdminTopbar() {
 
   return (
     <header className="h-14 bg-white border-b border-navy/8 flex items-center justify-between px-6">
-      <h1 className="font-display font-bold text-navy text-base uppercase tracking-wide">
-        {title}
-      </h1>
       <div className="flex items-center gap-3">
-        <button className="relative p-2 text-steel hover:text-navy transition-colors">
+        <span className="hidden sm:inline w-4 h-px bg-brand-orange/70" aria-hidden />
+        <h1 className="font-display font-bold text-navy text-lg uppercase tracking-wide leading-none">
+          {title}
+        </h1>
+      </div>
+      <div className="flex items-center gap-3">
+        <button className="relative p-2 text-steel hover:text-navy transition-colors" aria-label="Notifications">
           <Bell size={18} />
         </button>
         <div className="w-8 h-8 rounded-sm bg-brand-orange flex items-center justify-center
-                        text-white font-bold text-xs">
+                        text-white font-display font-bold text-sm">
           {user?.name?.[0]?.toUpperCase() ?? 'A'}
         </div>
       </div>

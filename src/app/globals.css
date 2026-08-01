@@ -82,6 +82,14 @@
            text-navy placeholder:text-steel text-sm transition-colors;
   }
 
+  /* Libellé de champ — annotation mono, cohérent site + admin */
+  .field-label {
+    @apply block font-mono text-[11px] tracking-[0.12em] uppercase text-navy/70 mb-1.5;
+  }
+  .field-error {
+    @apply font-mono text-[11px] tracking-wide text-red-500 mt-1;
+  }
+
   .status-available {
     @apply inline-flex items-center gap-1.5 text-emerald-600 font-medium text-xs;
   }

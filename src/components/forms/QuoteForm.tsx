@@ -42,37 +42,39 @@ export function QuoteForm({ craneId, craneName }: QuoteFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {craneName && (
-        <div className="bg-brand-orange/10 border border-brand-orange/30 rounded-sm p-3 text-sm text-navy font-medium">
-          🏗️ Devis pour : <strong>{craneName}</strong>
+        <div className="flex items-center gap-3 bg-brand-orange/10 border border-brand-orange/30 rounded-sm p-3">
+          <span className="font-mono text-[10px] tracking-[0.14em] text-brand-orange
+                           border border-brand-orange/40 rounded-sm px-1.5 py-0.5 shrink-0">GRUE</span>
+          <span className="text-sm text-navy">Devis pour : <strong>{craneName}</strong></span>
         </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">Nom complet <span className="text-brand-orange">*</span></label>
+          <label className="field-label">Nom complet <span className="text-brand-orange">*</span></label>
           <input {...register('fullName')} placeholder="Ibrahima Diallo" className="input-field" />
-          {errors.fullName && <p className="text-xs text-red-500 mt-1">{errors.fullName.message}</p>}
+          {errors.fullName && <p className="field-error">{errors.fullName.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">Email <span className="text-brand-orange">*</span></label>
+          <label className="field-label">Email <span className="text-brand-orange">*</span></label>
           <input {...register('email')} type="email" placeholder="i.diallo@example.com" className="input-field" />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
+          {errors.email && <p className="field-error">{errors.email.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">Téléphone</label>
+          <label className="field-label">Téléphone</label>
           <input {...register('phone')} placeholder="+221 77 000 00 00" className="input-field" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-navy mb-1">Entreprise</label>
+          <label className="field-label">Entreprise</label>
           <input {...register('company')} placeholder="Port Autonome de Dakar" className="input-field" />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-navy mb-1">Service requis</label>
+        <label className="field-label">Service requis</label>
         <select {...register('serviceType')} className="input-field">
           <option value="levage">Levage Industriel</option>
           <option value="manutention">Manutention Portuaire</option>
@@ -82,7 +84,7 @@ export function QuoteForm({ craneId, craneName }: QuoteFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-navy mb-1">Message / Détails</label>
+        <label className="field-label">Message / Détails</label>
         <textarea {...register('message')} rows={4} placeholder="Décrivez vos besoins, dates, durée..." className="input-field resize-none" />
       </div>
 

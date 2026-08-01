@@ -24,7 +24,7 @@ export default function AdminBlogPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['admin-posts', page],
     queryFn: async () => {
-      const res = await api.get('/posts', { params: { page, limit: 12 } });
+      const res = await api.get('/posts', { params: { page, limit: 12, all: true } });
       return res.data;
     },
   });

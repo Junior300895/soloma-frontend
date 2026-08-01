@@ -27,25 +27,28 @@ export default function LoginPage() {
       {/* Logo */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm
-                        bg-brand-orange/20 border border-brand-orange/30 mb-4">
+                        bg-white/[0.03] border border-brand-orange/30 mb-4">
           <Lock size={28} className="text-brand-orange" />
         </div>
-        <h1 className="font-display font-black text-white text-2xl uppercase tracking-[3px]">
+        <h1 className="font-display font-extrabold text-chalk text-2xl uppercase tracking-[3px]">
           SOLOMA <span className="text-brand-orange">ADMIN</span>
         </h1>
-        <p className="text-white/40 text-xs mt-1 tracking-wider">Espace d'administration</p>
+        <p className="font-mono text-[10px] text-blueprint mt-1.5 tracking-[0.15em] uppercase">Console de gestion · accès restreint</p>
       </div>
 
       {/* Card */}
-      <div className="bg-navy-light border border-white/10 rounded-sm p-8 shadow-2xl">
-        <h2 className="font-display font-bold text-white text-lg uppercase tracking-wide mb-6">
-          Connexion
-        </h2>
+      <div className="bg-ink-2 border border-blueprint/30 rounded-sm p-8 shadow-2xl">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="font-display font-bold text-chalk text-lg uppercase tracking-wide">
+            Connexion
+          </h2>
+          <span className="font-mono text-[10px] text-blueprint tracking-[0.15em]">RÉF. AUTH</span>
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Email */}
           <div>
-            <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
+            <label className="block font-mono text-[11px] text-white/60 uppercase tracking-[0.12em] mb-1.5">
               Email
             </label>
             <div className="relative">
@@ -66,7 +69,7 @@ export default function LoginPage() {
 
           {/* Password */}
           <div>
-            <label className="block text-xs font-medium text-white/60 uppercase tracking-wider mb-1.5">
+            <label className="block font-mono text-[11px] text-white/60 uppercase tracking-[0.12em] mb-1.5">
               Mot de passe
             </label>
             <div className="relative">

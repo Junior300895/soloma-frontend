@@ -28,10 +28,10 @@ export default function DashboardPage() {
   const { data: stats, isLoading } = useAdminStats();
 
   const cards = [
-    { label: 'Grues au catalogue', value: stats?.cranes, icon: Construction, color: 'bg-blue-500', href: '/admin/grues' },
-    { label: 'Devis reçus', value: stats?.quotes, icon: FileText, color: 'bg-brand-orange', href: '/admin/devis' },
-    { label: 'Projets publiés', value: stats?.projects, icon: FolderOpen, color: 'bg-emerald-500', href: '/admin/projets' },
-    { label: 'Messages', value: stats?.messages, icon: Mail, color: 'bg-purple-500', href: '/admin/messages' },
+    { label: 'Grues au catalogue', value: stats?.cranes, icon: Construction, href: '/admin/grues' },
+    { label: 'Devis reçus', value: stats?.quotes, icon: FileText, href: '/admin/devis' },
+    { label: 'Projets publiés', value: stats?.projects, icon: FolderOpen, href: '/admin/projets' },
+    { label: 'Messages', value: stats?.messages, icon: Mail, href: '/admin/messages' },
   ];
 
   const quickActions = [
@@ -51,20 +51,21 @@ export default function DashboardPage() {
             <Link
               key={card.label}
               href={card.href}
-              className="bg-white rounded-sm p-5 shadow-sm border border-navy/5
-                         hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className="group bg-white rounded-sm p-5 shadow-sm border border-navy/8
+                         hover:shadow-md hover:-translate-y-0.5 hover:border-brand-orange/40 transition-all duration-200"
             >
               <div className="flex items-start justify-between mb-3">
-                <div className={`w-10 h-10 rounded-sm ${card.color} flex items-center justify-center`}>
-                  <Icon size={18} className="text-white" />
+                <div className="w-10 h-10 rounded-sm bg-navy/[0.04] border border-navy/8 flex items-center justify-center
+                                group-hover:bg-brand-orange/10 group-hover:border-brand-orange/30 transition-colors">
+                  <Icon size={18} className="text-navy group-hover:text-brand-orange transition-colors" />
                 </div>
               </div>
-              <div className="font-display font-black text-navy text-3xl leading-none mb-1">
+              <div className="font-display font-extrabold text-navy text-4xl leading-none mb-1.5">
                 {isLoading ? (
                   <div className="h-8 w-12 bg-navy/10 rounded animate-pulse" />
                 ) : card.value ?? 0}
               </div>
-              <p className="text-steel text-xs font-medium uppercase tracking-wide">{card.label}</p>
+              <p className="font-mono text-[10px] text-steel uppercase tracking-[0.14em]">{card.label}</p>
             </Link>
           );
         })}
@@ -72,9 +73,9 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Actions rapides */}
-        <div className="bg-white rounded-sm shadow-sm border border-navy/5 p-5">
-          <h2 className="font-display font-bold text-navy text-sm uppercase tracking-wide mb-4">
-            Actions Rapides
+        <div className="bg-white rounded-sm shadow-sm border border-navy/8 p-5">
+          <h2 className="section-tag mb-4 !text-navy/70">
+            Actions rapides
           </h2>
           <div className="grid grid-cols-2 gap-3">
             {quickActions.map((action) => {
@@ -96,18 +97,18 @@ export default function DashboardPage() {
         </div>
 
         {/* Infos système */}
-        <div className="bg-white rounded-sm shadow-sm border border-navy/5 p-5">
-          <h2 className="font-display font-bold text-navy text-sm uppercase tracking-wide mb-4">
+        <div className="bg-white rounded-sm shadow-sm border border-navy/8 p-5">
+          <h2 className="section-tag mb-4 !text-navy/70">
             Informations
           </h2>
           <div className="space-y-3">
             {[
-              { label: 'API Backend', value: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/v1', status: 'ok' },
-              { label: 'Environnement', value: process.env.NODE_ENV || 'development', status: 'ok' },
-              { label: 'Version', value: '1.0.0', status: 'ok' },
+              { label: 'API Backend', value: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/v1' },
+              { label: 'Environnement', value: process.env.NODE_ENV || 'development' },
+              { label: 'Version', value: '1.0.0' },
             ].map((info) => (
               <div key={info.label} className="flex items-center justify-between py-2 border-b border-navy/5 last:border-0">
-                <span className="text-xs text-steel uppercase tracking-wider">{info.label}</span>
+                <span className="font-mono text-[10px] text-steel uppercase tracking-[0.14em]">{info.label}</span>
                 <span className="text-xs text-navy font-medium font-mono truncate max-w-[200px]">{info.value}</span>
               </div>
             ))}

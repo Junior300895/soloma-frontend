@@ -23,12 +23,13 @@ export function AdminSidebar() {
   const { logout, user } = useAuth();
 
   return (
-    <aside className="w-60 min-h-screen bg-navy border-r border-white/8 flex flex-col">
+    <aside className="w-60 min-h-screen bg-ink border-r border-white/10 flex flex-col">
       {/* Logo */}
-      <div className="px-5 py-5 border-b border-white/8">
-        <span className="font-display font-black text-white text-base tracking-[2px] uppercase">
+      <div className="px-5 py-5 border-b border-white/10">
+        <span className="font-display font-extrabold text-chalk text-base tracking-[2px] uppercase">
           SOLOMA <span className="text-brand-orange">ADMIN</span>
         </span>
+        <p className="font-mono text-[9px] tracking-[0.15em] text-blueprint uppercase mt-1">Console de gestion</p>
       </div>
 
       {/* Nav */}
@@ -41,10 +42,10 @@ export function AdminSidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm font-medium transition-all',
+                'relative flex items-center gap-3 px-3 py-2.5 rounded-sm font-mono text-[12px] tracking-[0.08em] uppercase transition-all',
                 active
                   ? 'bg-brand-orange text-white'
-                  : 'text-white/55 hover:text-white hover:bg-white/5',
+                  : 'text-white/55 hover:text-chalk hover:bg-white/5',
               )}
             >
               <Icon size={16} />
