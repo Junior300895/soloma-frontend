@@ -13,10 +13,17 @@ module.exports = {
           'orange-dark': '#C94D10',
         },
         steel: '#8A9BB0',
+        ink: {
+          DEFAULT: '#0A1628',
+          2: '#0E1E33',
+        },
+        blueprint: '#3E5C7E',
+        chalk: '#E8EDF2',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-barlow)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-saira)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
     },
   },

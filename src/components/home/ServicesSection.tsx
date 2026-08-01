@@ -10,16 +10,16 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const fallback = [
-  { id: 1, slug: 'manutention-portuaire', title: 'Manutention Portuaire', icon: 'Ship',
+  { id: 1, slug: 'manutention-portuaire', title: 'Manutention Portuaire', icon: 'Ship', metric: '24/7',
     description: 'Chargement, déchargement et transit de marchandises 24h/24, 7j/7.',
     features: ['Opérations 24h/24, 7j/7', 'Gestion de conteneurs', 'Stockage sécurisé', 'Personnel certifié'] },
-  { id: 2, slug: 'levage-industriel', title: 'Levage Industriel', icon: 'Construction',
+  { id: 2, slug: 'levage-industriel', title: 'Levage Industriel', icon: 'Construction', metric: '50–500 T',
     description: 'Location de grues mobiles et levage complexe de 50T à 500T.',
     features: ['Grues de 50T à 500T', 'Techniciens certifiés', 'Montage / démontage', 'Études de levage'] },
-  { id: 3, slug: 'operations-logistiques', title: 'Opérations Logistiques', icon: 'Package',
+  { id: 3, slug: 'operations-logistiques', title: 'Opérations Logistiques', icon: 'Package', metric: 'GPS',
     description: 'Coordination multimodale et transport terrestre avec suivi GPS en temps réel.',
     features: ['Transport terrestre', 'Entreposage sécurisé', 'Suivi GPS temps réel', 'Dédouanement'] },
-  { id: 4, slug: 'services-associes', title: 'Services Associés', icon: 'Wrench',
+  { id: 4, slug: 'services-associes', title: 'Services Associés', icon: 'Wrench', metric: 'HSE',
     description: 'Conseil technique, inspection qualité et formation des équipes.',
     features: ['Conseil technique', 'Inspection qualité', 'Formation', 'Maintenance'] },
 ];
@@ -41,12 +41,12 @@ export function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <span className="section-tag">Ce que nous faisons</span>
-          <h2 className="section-title mt-1 mb-3">
-            Une expertise complète<br />à votre service
+          <h2 className="section-title mt-3 mb-3">
+            Quatre métiers,<br />une seule chaîne de levage
           </h2>
-          <p className="text-steel max-w-xl text-sm leading-relaxed">
-            De la manutention portuaire au levage industriel, nous couvrons l'ensemble
-            de vos besoins logistiques avec rigueur et professionnalisme.
+          <p className="text-steel max-w-xl text-[15px] leading-relaxed">
+            Du quai au chantier, nous tenons chaque maillon : manutention, levage,
+            transport et suivi. Un seul interlocuteur, de l'étude à la dépose.
           </p>
         </div>
 
@@ -56,12 +56,23 @@ export function ServicesSection() {
             const features: string[] = s.features ?? [];
             return (
               <div key={s.id}
-                className="bg-white rounded-sm border-t-2 border-brand-orange p-5 shadow-sm
-                           hover:shadow-md hover:-translate-y-1 transition-all duration-200">
-                <div className="w-10 h-10 rounded-sm bg-brand-orange/10 flex items-center justify-center mb-3">
-                  <Icon size={20} className="text-brand-orange" />
+                className="group bg-white rounded-sm border border-navy/8 p-5 shadow-sm
+                           hover:shadow-md hover:-translate-y-1 hover:border-brand-orange/40
+                           transition-all duration-200">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-10 h-10 rounded-sm bg-navy/[0.04] border border-navy/8
+                                  flex items-center justify-center group-hover:bg-brand-orange/10
+                                  group-hover:border-brand-orange/30 transition-colors">
+                    <Icon size={20} className="text-navy group-hover:text-brand-orange transition-colors" />
+                  </div>
+                  {s.metric && (
+                    <span className="font-mono text-[10px] tracking-[0.14em] text-brand-orange
+                                     border border-brand-orange/30 rounded-sm px-1.5 py-0.5">
+                      {s.metric}
+                    </span>
+                  )}
                 </div>
-                <h3 className="font-display font-bold text-navy text-base uppercase tracking-wide mb-2">
+                <h3 className="font-display font-bold text-navy text-lg uppercase tracking-wide mb-2">
                   {s.title}
                 </h3>
                 <p className="text-steel text-xs leading-relaxed mb-3">{s.description}</p>

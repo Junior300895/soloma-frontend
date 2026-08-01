@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    --ink: #0A1628;
+    --ink-2: #0E1E33;
+    --blueprint: #3E5C7E;
+    --chalk: #E8EDF2;
     --navy: #0A1628;
     --navy-light: #1E3A5F;
     --orange: #E8601C;
@@ -16,7 +20,7 @@
 
   body {
     @apply bg-[#F4F6F9] text-[#0D1B2A] antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
   }
 }
 
@@ -37,16 +41,34 @@
            text-white font-semibold px-6 py-3 rounded-sm transition-colors duration-200 text-sm;
   }
 
+  /* Eyebrow = spec tag, monospace like a drawing annotation */
   .section-tag {
-    @apply text-brand-orange font-semibold text-xs tracking-[0.2em] uppercase;
+    @apply font-mono text-brand-orange text-[11px] tracking-[0.22em] uppercase inline-flex items-center gap-2;
+  }
+  .section-tag::before {
+    content: '';
+    @apply inline-block w-5 h-px bg-brand-orange/70;
   }
 
   .section-title {
-    @apply font-display font-bold text-navy text-3xl md:text-4xl uppercase leading-tight tracking-wide;
+    @apply font-display font-bold text-navy text-4xl md:text-5xl uppercase leading-[0.95] tracking-[0.01em];
   }
 
   .section-title-white {
-    @apply font-display font-bold text-white text-3xl md:text-4xl uppercase leading-tight tracking-wide;
+    @apply font-display font-bold text-chalk text-4xl md:text-5xl uppercase leading-[0.95] tracking-[0.01em];
+  }
+
+  /* Monospace data readout (tonnage, radius, coordinates) */
+  .readout {
+    @apply font-mono text-steel text-[11px] tracking-[0.14em] uppercase;
+  }
+
+  /* Faint blueprint gridlines for dark panels */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(var(--blueprint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blueprint) 1px, transparent 1px);
+    background-size: 34px 34px;
   }
 
   .card {
@@ -68,5 +90,40 @@
   }
   .status-maintenance {
     @apply inline-flex items-center gap-1.5 text-red-500 font-medium text-xs;
+  }
+}
+
+/* ---- Hero lift-diagram motion ---- */
+@keyframes boom-raise {
+  from { transform: rotate(14deg); }
+  to   { transform: rotate(0deg); }
+}
+@keyframes draw-line {
+  from { stroke-dashoffset: var(--dash, 600); }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.boom-group {
+  transform-box: fill-box;
+  transform-origin: bottom left;
+  animation: boom-raise 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.arc-line {
+  stroke-dasharray: var(--dash, 600);
+  animation: draw-line 1.6s ease-out both;
+}
+.rise-1 { animation: rise-in 0.7s ease-out 0.05s both; }
+.rise-2 { animation: rise-in 0.7s ease-out 0.18s both; }
+.rise-3 { animation: rise-in 0.7s ease-out 0.31s both; }
+.rise-4 { animation: rise-in 0.7s ease-out 0.44s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .boom-group, .arc-line, .rise-1, .rise-2, .rise-3, .rise-4 {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }
