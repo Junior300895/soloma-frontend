@@ -14,7 +14,7 @@ export function CatalogPreview() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
             <span className="section-tag">Notre flotte</span>
-            <h2 className="section-title mt-1">Catalogue de Grues</h2>
+            <h2 className="section-title mt-3">Capacité au rayon</h2>
           </div>
           <Link href="/catalogue-grues"
             className="inline-flex items-center gap-1.5 text-brand-orange font-semibold

@@ -25,7 +25,7 @@ export function BlogPreview() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
             <span className="section-tag">Actualités</span>
-            <h2 className="section-title mt-1">Dernières Actualités</h2>
+            <h2 className="section-title mt-3">Du chantier & des quais</h2>
           </div>
           <Link href="/actualites"
             className="inline-flex items-center gap-1.5 text-brand-orange font-semibold
@@ -44,27 +44,28 @@ export function BlogPreview() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {posts.map((post) => (
               <Link key={post.id} href={`/actualites/${post.slug}`}
-                className="bg-white rounded-sm shadow-sm border border-navy/5
-                           hover:shadow-md hover:-translate-y-1 transition-all duration-200 group">
+                className="bg-white rounded-sm shadow-sm border border-navy/8
+                           hover:shadow-md hover:-translate-y-1 hover:border-brand-orange/40
+                           transition-all duration-200 group">
                 {/* Cover */}
-                <div className="relative h-40 bg-navy rounded-t-sm overflow-hidden">
+                <div className="relative h-40 bg-ink rounded-t-sm overflow-hidden">
                   {post.coverImage ? (
                     <Image src={post.coverImage} alt={post.title} fill
-                      className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-300" />
+                      className="object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-white/10 text-4xl">📰</span>
+                    <div className="absolute inset-0 blueprint-grid opacity-40 flex items-center justify-center">
+                      <span className="readout text-[10px] text-blueprint">SOLOMA · ACTUALITÉ</span>
                     </div>
                   )}
                 </div>
                 {/* Body */}
                 <div className="p-5">
                   {post.category && (
-                    <span className="text-brand-orange text-[10px] font-bold tracking-[2px] uppercase">
+                    <span className="font-mono text-[10px] tracking-[0.14em] uppercase text-brand-orange">
                       {post.category.name}
                     </span>
                   )}
-                  <h3 className="font-semibold text-navy text-sm leading-snug mt-1 mb-2
+                  <h3 className="font-display font-bold text-navy text-lg uppercase tracking-wide leading-tight mt-1.5 mb-2
                                  group-hover:text-brand-orange transition-colors line-clamp-2">
                     {post.title}
                   </h3>

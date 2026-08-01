@@ -32,19 +32,22 @@ export default function ProjetDetailPage({ params }: { params: { id: string } })
   return (
     <>
       {/* Hero */}
-      <div className="bg-navy pt-32 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center gap-2 text-xs text-white/40 mb-4">
-            <Link href="/" className="hover:text-white/70 transition-colors">Accueil</Link>
+      <div className="relative bg-ink pt-32 pb-14 overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid opacity-[0.05]" aria-hidden />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-brand-orange/40" aria-hidden />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase text-blueprint mb-5">
+            <Link href="/" className="hover:text-chalk transition-colors">Accueil</Link>
             <ChevronRight size={12} />
-            <Link href="/realisations" className="hover:text-white/70 transition-colors">Réalisations</Link>
+            <Link href="/realisations" className="hover:text-chalk transition-colors">Réalisations</Link>
             <ChevronRight size={12} />
-            <span className="text-white/70 line-clamp-1">{project.title}</span>
+            <span className="text-brand-orange line-clamp-1">{project.title}</span>
           </nav>
-          <h1 className="font-display font-black text-white text-3xl md:text-4xl uppercase tracking-wide mb-4">
+          <h1 className="font-display font-extrabold text-chalk text-4xl md:text-5xl uppercase
+                         leading-[0.92] tracking-[0.01em] mb-5">
             {project.title}
           </h1>
-          <div className="flex flex-wrap gap-4 text-sm text-white/50">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] tracking-wider uppercase text-steel">
             {project.location && (
               <span className="flex items-center gap-1.5"><MapPin size={13} className="text-brand-orange" />{project.location}</span>
             )}

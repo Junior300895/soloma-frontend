@@ -28,34 +28,41 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b',
         scrolled
-          ? 'bg-navy shadow-lg border-b border-brand-orange/30'
-          : 'bg-navy/95 backdrop-blur-sm',
+          ? 'bg-ink shadow-lg border-brand-orange/30'
+          : 'bg-ink/95 backdrop-blur-sm border-white/10',
       )}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-display font-black text-xl tracking-[3px] text-white uppercase">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <span className="font-display font-extrabold text-xl tracking-[3px] text-chalk uppercase leading-none">
               SOLOMA <span className="text-brand-orange">SUARL</span>
+            </span>
+            <span className="hidden xl:inline-block font-mono text-[9px] tracking-[0.15em]
+                             text-blueprint border-l border-white/15 pl-2.5 leading-tight">
+              LEVAGE<br />50–500 T
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'text-xs font-medium tracking-wider uppercase transition-colors duration-200',
+                  'relative font-mono text-[11px] tracking-[0.14em] uppercase transition-colors duration-200 py-1',
                   pathname === link.href
                     ? 'text-brand-orange'
-                    : 'text-white/75 hover:text-white',
+                    : 'text-white/65 hover:text-chalk',
                 )}
               >
+                {pathname === link.href && (
+                  <span className="absolute -top-0.5 left-0 w-3 h-px bg-brand-orange" />
+                )}
                 {link.label}
               </Link>
             ))}
@@ -65,7 +72,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <Link href="/contact" className="hidden sm:flex btn-primary text-xs py-2 px-4">
               <Phone size={14} />
-              Devis Rapide
+              Demander un devis
             </Link>
             <button
               onClick={() => setOpen(!open)}
@@ -80,16 +87,16 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden bg-navy border-t border-white/10">
-          <div className="px-4 py-4 flex flex-col gap-3">
+        <div className="lg:hidden bg-ink border-t border-white/10">
+          <div className="px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  'text-sm font-medium uppercase tracking-wider py-2 border-b border-white/5',
-                  pathname === link.href ? 'text-brand-orange' : 'text-white/80',
+                  'font-mono text-[13px] uppercase tracking-[0.12em] py-2.5 border-b border-white/5',
+                  pathname === link.href ? 'text-brand-orange' : 'text-white/75',
                 )}
               >
                 {link.label}

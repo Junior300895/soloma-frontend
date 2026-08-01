@@ -94,21 +94,25 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   return (
     <>
       {/* Hero */}
-      <div className="bg-navy pt-32 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative bg-ink pt-32 pb-14 overflow-hidden">
+        <div className="absolute inset-0 blueprint-grid opacity-[0.05]" aria-hidden />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-brand-orange/40" aria-hidden />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-white/40 mb-4">
-            <Link href="/" className="hover:text-white/70 transition-colors">Accueil</Link>
+          <nav className="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase text-blueprint mb-5">
+            <Link href="/" className="hover:text-chalk transition-colors">Accueil</Link>
             <ChevronRight size={12} />
-            <Link href="/services" className="hover:text-white/70 transition-colors">Services</Link>
+            <Link href="/services" className="hover:text-chalk transition-colors">Services</Link>
             <ChevronRight size={12} />
-            <span className="text-white/70">{service.title}</span>
+            <span className="text-brand-orange">{service.title}</span>
           </nav>
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-sm bg-brand-orange/20 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-sm bg-white/[0.03] border border-brand-orange/30
+                            flex items-center justify-center shrink-0">
               <Icon size={28} className="text-brand-orange" />
             </div>
-            <h1 className="font-display font-black text-white text-4xl md:text-5xl uppercase tracking-wide">
+            <h1 className="font-display font-extrabold text-chalk text-4xl md:text-5xl uppercase
+                           leading-[0.92] tracking-[0.01em]">
               {service.title}
             </h1>
           </div>
@@ -137,11 +141,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.process.map((p) => (
-                  <div key={p.step} className="bg-white rounded-sm p-5 border border-navy/5 shadow-sm">
-                    <div className="font-display font-black text-brand-orange/30 text-3xl leading-none mb-2">
-                      {p.step}
+                  <div key={p.step} className="bg-white rounded-sm p-5 border border-navy/8 shadow-sm">
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className="font-mono text-[10px] tracking-[0.14em] text-steel uppercase">Étape</span>
+                      <span className="font-display font-extrabold text-brand-orange text-3xl leading-none">
+                        {String(p.step).padStart(2, '0')}
+                      </span>
                     </div>
-                    <h3 className="font-bold text-navy text-sm uppercase tracking-wide mb-1">{p.title}</h3>
+                    <h3 className="font-display font-bold text-navy text-base uppercase tracking-wide mb-1">{p.title}</h3>
                     <p className="text-steel text-xs leading-relaxed">{p.desc}</p>
                   </div>
                 ))}

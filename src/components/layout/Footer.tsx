@@ -26,18 +26,30 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy border-t border-brand-orange/20">
+    <footer className="bg-ink border-t border-brand-orange/30">
+      {/* Bandeau readout — comme le cartouche d'un plan */}
+      <div className="border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center
+                        gap-x-6 gap-y-1 font-mono text-[10px] tracking-[0.16em] uppercase text-blueprint">
+          <span className="text-brand-orange">● Opérations 24/7</span>
+          <span>Base · Port de Dakar · 14.68°N 17.43°W</span>
+          <span className="hidden sm:inline">Levage 50–500 T</span>
+          <span className="ml-auto hidden md:inline">Réponse devis sous 24 h</span>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="block mb-4">
-              <span className="font-display font-black text-lg tracking-[3px] text-white uppercase">
+              <span className="font-display font-extrabold text-xl tracking-[3px] text-chalk uppercase">
                 SOLOMA <span className="text-brand-orange">SUARL</span>
               </span>
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed mb-5">
-              Spécialiste de la manutention portuaire et du levage industriel en Afrique de l'Ouest.
+            <p className="text-white/45 text-sm leading-relaxed mb-5 max-w-xs">
+              Ingénieurs du levage lourd et de la manutention portuaire en Afrique de l'Ouest.
+              Chaque lift est étudié avant d'être exécuté.
             </p>
             <div className="flex gap-2">
               {socials.map((s) => (
@@ -47,8 +59,9 @@ export function Footer() {
                   title={s.title}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-sm bg-white/5 hover:bg-brand-orange flex items-center justify-center
-                             text-white/60 hover:text-white text-[10px] font-bold tracking-wider
+                  className="w-8 h-8 rounded-sm border border-white/10 bg-white/[0.03] hover:bg-brand-orange
+                             hover:border-brand-orange flex items-center justify-center
+                             text-white/55 hover:text-white font-mono text-[10px] tracking-wider
                              transition-all duration-200"
                 >
                   {s.label}
@@ -59,7 +72,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold text-xs tracking-[2px] uppercase mb-4">Services</h4>
+            <h4 className="section-tag mb-4">Services</h4>
             <ul className="space-y-2">
               {services.map((s) => (
                 <li key={s.href}>
@@ -73,7 +86,7 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-white font-semibold text-xs tracking-[2px] uppercase mb-4">Navigation</h4>
+            <h4 className="section-tag mb-4">Navigation</h4>
             <ul className="space-y-2">
               {nav.map((n) => (
                 <li key={n.href}>
@@ -87,7 +100,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold text-xs tracking-[2px] uppercase mb-4">Contact</h4>
+            <h4 className="section-tag mb-4">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-start gap-2 text-sm text-white/50">
                 <MapPin size={14} className="text-brand-orange mt-0.5 shrink-0" />
@@ -111,7 +124,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-white/30 text-xs">© {new Date().getFullYear()} SOLOMA SUARL — Tous droits réservés</p>
+          <p className="text-white/30 text-xs font-mono tracking-wide">© {new Date().getFullYear()} SOLOMA SUARL — Tous droits réservés</p>
           <div className="flex gap-4">
             <Link href="/mentions-legales" className="text-white/30 hover:text-white/60 text-xs transition-colors">
               Mentions légales
