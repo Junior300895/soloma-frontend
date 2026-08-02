@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
+import { Logo } from '@/components/layout/Logo';
 
 const navItems = [
   { href: '/admin', label: 'Tableau de bord', icon: LayoutDashboard, exact: true },
@@ -26,10 +27,8 @@ export function AdminSidebar() {
     <aside className="w-60 min-h-screen bg-ink border-r border-white/10 flex flex-col">
       {/* Logo */}
       <div className="px-5 py-5 border-b border-white/10">
-        <span className="font-display font-extrabold text-chalk text-base tracking-[2px] uppercase">
-          SOLOMA <span className="text-brand-orange">ADMIN</span>
-        </span>
-        <p className="font-mono text-[9px] tracking-[0.15em] text-blueprint uppercase mt-1">Console de gestion</p>
+        <Logo onDark heightClass="h-8" />
+        <p className="font-mono text-[9px] tracking-[0.15em] text-blueprint uppercase mt-2.5">Console de gestion</p>
       </div>
 
       {/* Nav */}

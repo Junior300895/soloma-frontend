@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Logo } from './Logo';
 
 const navLinks = [
   { href: '/', label: 'Accueil' },
@@ -37,14 +38,8 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <span className="font-display font-extrabold text-xl tracking-[3px] text-chalk uppercase leading-none">
-              SOLOMA <span className="text-brand-orange">SUARL</span>
-            </span>
-            <span className="hidden xl:inline-block font-mono text-[9px] tracking-[0.15em]
-                             text-blueprint border-l border-white/15 pl-2.5 leading-tight">
-              LEVAGE<br />50–500 T
-            </span>
+          <Link href="/" className="flex items-center gap-2.5 group" aria-label="SOLOMA SUARL — Accueil">
+            <Logo onDark heightClass="h-9" />
           </Link>
 
           {/* Desktop nav */}

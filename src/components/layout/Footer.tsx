@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Logo } from './Logo';
 
 const services = [
   { href: '/services/manutention-portuaire', label: 'Manutention Portuaire' },
@@ -42,10 +43,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="block mb-4">
-              <span className="font-display font-extrabold text-xl tracking-[3px] text-chalk uppercase">
-                SOLOMA <span className="text-brand-orange">SUARL</span>
-              </span>
+            <Link href="/" className="inline-block mb-4" aria-label="SOLOMA SUARL — Accueil">
+              <Logo onDark heightClass="h-10" />
             </Link>
             <p className="text-white/45 text-sm leading-relaxed mb-5 max-w-xs">
               Ingénieurs du levage lourd et de la manutention portuaire en Afrique de l'Ouest.

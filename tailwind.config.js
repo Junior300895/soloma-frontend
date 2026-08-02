@@ -9,8 +9,10 @@ module.exports = {
           light: '#1E3A5F',
         },
         brand: {
-          orange: '#E8601C',
-          'orange-dark': '#C94D10',
+          // Rouge de la marque SOLOMA (le token garde le nom "orange" pour éviter
+          // de renommer des centaines d'usages `brand-orange` dans tout le code).
+          orange: '#E30613',
+          'orange-dark': '#B4040F',
         },
         steel: '#8A9BB0',
         ink: {

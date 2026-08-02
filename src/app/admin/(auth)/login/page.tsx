@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { Eye, EyeOff, Lock, Mail, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { Logo } from '@/components/layout/Logo';
 
 const schema = z.object({
   email: z.string().email('Email invalide'),
@@ -25,15 +26,9 @@ export default function LoginPage() {
   return (
     <div className="w-full max-w-md">
       {/* Logo */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm
-                        bg-white/[0.03] border border-brand-orange/30 mb-4">
-          <Lock size={28} className="text-brand-orange" />
-        </div>
-        <h1 className="font-display font-extrabold text-chalk text-2xl uppercase tracking-[3px]">
-          SOLOMA <span className="text-brand-orange">ADMIN</span>
-        </h1>
-        <p className="font-mono text-[10px] text-blueprint mt-1.5 tracking-[0.15em] uppercase">Console de gestion · accès restreint</p>
+      <div className="flex flex-col items-center text-center mb-8">
+        <Logo onDark heightClass="h-11" />
+        <p className="font-mono text-[10px] text-blueprint mt-4 tracking-[0.15em] uppercase">Console de gestion · accès restreint</p>
       </div>
 
       {/* Card */}

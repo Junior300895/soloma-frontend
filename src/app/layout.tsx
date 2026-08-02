@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             position="top-right"
             toastOptions={{
               success: { style: { background: '#0A1628', color: '#fff' } },
-              error: { style: { background: '#E8601C', color: '#fff' } },
+              error: { style: { background: '#E30613', color: '#fff' } },
             }}
           /> */}
         </Providers>
