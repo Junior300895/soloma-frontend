@@ -12,6 +12,8 @@
     --navy-light: #1E3A5F;
     --orange: #E30613;
     --orange-dark: #B4040F;
+    /* Rouge éclairci pour le petit texte sur fond sombre (contraste AA ≈ 5:1) */
+    --hazard-light: #FF3B3B;
     --steel: #8A9BB0;
     --light: #F4F6F9;
   }
@@ -110,6 +112,21 @@
   .status-maintenance {
     @apply inline-flex items-center gap-1.5 text-red-500 font-medium text-xs;
   }
+}
+
+/* ---- Contraste : rouge éclairci pour le petit texte sur fond sombre ----
+   Sur fond clair, #E30613 passe (4.88:1). Sur ink/ink-2, il tombe à 3.71:1 :
+   on le remplace par --hazard-light (≈5:1) uniquement dans ces contextes.
+   Placé hors @layer pour une spécificité descendante qui l'emporte. */
+.bg-ink .section-tag,
+.bg-ink-2 .section-tag,
+.bg-ink .text-brand-orange,
+.bg-ink-2 .text-brand-orange {
+  color: var(--hazard-light);
+}
+.bg-ink .section-tag::before,
+.bg-ink-2 .section-tag::before {
+  background-color: var(--hazard-light);
 }
 
 /* ---- Hero lift-diagram motion ---- */
