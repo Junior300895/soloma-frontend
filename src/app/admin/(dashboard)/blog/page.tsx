@@ -51,8 +51,8 @@ export default function AdminBlogPage() {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-display font-bold text-navy text-lg uppercase tracking-wide">Blog & Actualités</h2>
-          <p className="text-steel text-xs mt-0.5">{meta?.total ?? 0} article(s)</p>
+          <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide">Blog & Actualités</h2>
+          <p className="admin-count">{meta?.total ?? 0} article(s)</p>
         </div>
         <Link href="/admin/blog/nouveau" className="btn-primary text-xs py-2.5">
           <Plus size={15} /> Nouvel article
@@ -64,7 +64,7 @@ export default function AdminBlogPage() {
           <thead>
             <tr className="bg-[#F4F6F9] border-b border-navy/8">
               {['Titre', 'Catégorie', 'Statut', 'Date', 'Actions'].map(h => (
-                <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">{h}</th>
+                <th key={h} className="admin-th">{h}</th>
               ))}
             </tr>
           </thead>
@@ -87,7 +87,7 @@ export default function AdminBlogPage() {
                   <td className="px-4 py-3 font-medium text-navy max-w-xs truncate">{post.title}</td>
                   <td className="px-4 py-3 text-steel text-xs">{post.category?.name || '—'}</td>
                   <td className="px-4 py-3">
-                    <span className={cn('text-xs font-semibold px-2.5 py-1 rounded-full', statusStyle[post.status])}>
+                    <span className={cn('admin-badge', statusStyle[post.status])}>
                       {statusLabel[post.status]}
                     </span>
                   </td>

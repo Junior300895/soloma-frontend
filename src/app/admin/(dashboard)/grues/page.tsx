@@ -10,9 +10,9 @@ import { cn, STATUS_LABELS } from '@/lib/utils';
 import type { Crane } from '@/types';
 
 const statusColors: Record<string, string> = {
-  available: 'bg-emerald-100 text-emerald-700',
-  reserved: 'bg-amber-100 text-amber-700',
-  maintenance: 'bg-red-100 text-red-700',
+  available: 'bg-emerald-50 text-emerald-700',
+  reserved: 'bg-amber-50 text-amber-700',
+  maintenance: 'bg-red-50 text-red-600',
 };
 
 export default function AdminGruesPage() {
@@ -38,10 +38,10 @@ export default function AdminGruesPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-display font-bold text-navy text-lg uppercase tracking-wide">
-            Catalogue de Grues
+          <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide">
+            Catalogue de grues
           </h2>
-          <p className="text-steel text-xs mt-0.5">{meta?.total ?? 0} grue(s) au total</p>
+          <p className="admin-count">{meta?.total ?? 0} grue(s) au total</p>
         </div>
         <Link href="/admin/grues/nouvelle" className="btn-primary text-xs py-2.5">
           <Plus size={15} /> Ajouter une grue
@@ -54,12 +54,12 @@ export default function AdminGruesPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-[#F4F6F9] border-b border-navy/8">
-                <th className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">Modèle</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">Marque</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">Capacité</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">Hauteur</th>
-                <th className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">Statut</th>
-                <th className="text-right px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">Actions</th>
+                <th className="admin-th">Modèle</th>
+                <th className="admin-th">Marque</th>
+                <th className="admin-th">Capacité</th>
+                <th className="admin-th">Hauteur</th>
+                <th className="admin-th">Statut</th>
+                <th className="admin-th text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -87,7 +87,7 @@ export default function AdminGruesPage() {
                     <td className="px-4 py-3 text-steel font-mono">{crane.capacityT}T</td>
                     <td className="px-4 py-3 text-steel font-mono">{crane.maxHeightM}m</td>
                     <td className="px-4 py-3">
-                      <span className={cn('text-xs font-semibold px-2.5 py-1 rounded-full', statusColors[crane.status])}>
+                      <span className={cn('admin-badge', statusColors[crane.status])}>
                         {STATUS_LABELS[crane.status]}
                       </span>
                     </td>

@@ -90,6 +90,17 @@
     @apply font-mono text-[11px] tracking-wide text-red-500 mt-1;
   }
 
+  /* Tables admin — cohérence avec le langage mono/data */
+  .admin-th {
+    @apply text-left px-4 py-3 font-mono text-[10px] tracking-[0.16em] uppercase text-steel font-normal;
+  }
+  .admin-count {
+    @apply font-mono text-[11px] tracking-wide text-steel mt-1;
+  }
+  .admin-badge {
+    @apply inline-flex items-center gap-1 font-mono text-[10px] tracking-[0.08em] uppercase px-2 py-0.5 rounded-sm;
+  }
+
   .status-available {
     @apply inline-flex items-center gap-1.5 text-emerald-600 font-medium text-xs;
   }

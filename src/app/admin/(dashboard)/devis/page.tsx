@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 const statusColors: Record<string, string> = {
-  pending: 'bg-amber-100 text-amber-700',
-  processed: 'bg-emerald-100 text-emerald-700',
+  pending: 'bg-amber-50 text-amber-700',
+  processed: 'bg-emerald-50 text-emerald-700',
   archived: 'bg-gray-100 text-gray-500',
 };
 const statusLabels: Record<string, string> = {
@@ -44,8 +44,8 @@ export default function AdminDevisPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="font-display font-bold text-navy text-lg uppercase tracking-wide">Demandes de Devis</h2>
-        <p className="text-steel text-xs mt-0.5">{meta?.total ?? 0} demande(s) reçue(s)</p>
+        <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide">Demandes de devis</h2>
+        <p className="admin-count">{meta?.total ?? 0} demande(s) reçue(s)</p>
       </div>
 
       <div className="bg-white rounded-sm shadow-sm border border-navy/5 overflow-hidden">
@@ -54,7 +54,7 @@ export default function AdminDevisPage() {
             <thead>
               <tr className="bg-[#F4F6F9] border-b border-navy/8">
                 {['Nom', 'Email', 'Téléphone', 'Service', 'Grue', 'Date', 'Statut', 'Action'].map(h => (
-                  <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">{h}</th>
+                  <th key={h} className="admin-th">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -79,7 +79,7 @@ export default function AdminDevisPage() {
                     <td className="px-4 py-3 text-steel text-xs">{q.crane ? `${q.crane.brand} ${q.crane.model}` : '—'}</td>
                     <td className="px-4 py-3 text-steel text-xs">{formatDate(q.createdAt)}</td>
                     <td className="px-4 py-3">
-                      <span className={cn('text-xs font-semibold px-2.5 py-1 rounded-full', statusColors[q.status])}>
+                      <span className={cn('admin-badge', statusColors[q.status])}>
                         {statusLabels[q.status]}
                       </span>
                     </td>

@@ -37,8 +37,8 @@ export default function AdminProjetsPage() {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-display font-bold text-navy text-lg uppercase tracking-wide">Projets & Réalisations</h2>
-          <p className="text-steel text-xs mt-0.5">{meta?.total ?? 0} projet(s)</p>
+          <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide">Projets & Réalisations</h2>
+          <p className="admin-count">{meta?.total ?? 0} projet(s)</p>
         </div>
         <Link href="/admin/projets/nouveau" className="btn-primary text-xs py-2.5">
           <Plus size={15} /> Nouveau projet
@@ -50,7 +50,7 @@ export default function AdminProjetsPage() {
           <thead>
             <tr className="bg-[#F4F6F9] border-b border-navy/8">
               {['Titre', 'Client', 'Localisation', 'Date', 'Médias', 'Actions'].map(h => (
-                <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">{h}</th>
+                <th key={h} className="admin-th">{h}</th>
               ))}
             </tr>
           </thead>

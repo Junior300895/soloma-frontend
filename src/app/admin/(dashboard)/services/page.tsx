@@ -85,8 +85,8 @@ export default function AdminServicesPage() {
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-display font-bold text-navy text-lg uppercase tracking-wide">Services</h2>
-          <p className="text-steel text-xs mt-0.5">{services.length} service(s)</p>
+          <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide">Services</h2>
+          <p className="admin-count">{services.length} service(s)</p>
         </div>
         <button onClick={() => { resetForm(); setShowForm(true); }} className="btn-primary text-xs py-2.5">
           <Plus size={15} /> Nouveau service
@@ -97,7 +97,7 @@ export default function AdminServicesPage() {
       {showForm && (
         <div className="bg-white rounded-sm shadow-sm border border-navy/5 p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-navy text-sm">
+            <h3 className="font-display font-bold text-navy text-base uppercase tracking-wide">
               {editingId ? 'Modifier le service' : 'Nouveau service'}
             </h3>
             <button onClick={resetForm} className="text-steel hover:text-navy">
@@ -106,7 +106,7 @@ export default function AdminServicesPage() {
           </div>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
             <div className="col-span-2 sm:col-span-1">
-              <label className="block text-xs font-medium text-steel mb-1">Titre *</label>
+              <label className="field-label">Titre *</label>
               <input
                 required
                 value={form.title}
@@ -116,7 +116,7 @@ export default function AdminServicesPage() {
               />
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <label className="block text-xs font-medium text-steel mb-1">Slug *</label>
+              <label className="field-label">Slug *</label>
               <input
                 required
                 value={form.slug}
@@ -126,7 +126,7 @@ export default function AdminServicesPage() {
               />
             </div>
             <div className="col-span-2">
-              <label className="block text-xs font-medium text-steel mb-1">Description</label>
+              <label className="field-label">Description</label>
               <textarea
                 rows={3}
                 value={form.description}
@@ -136,7 +136,7 @@ export default function AdminServicesPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-steel mb-1">Icône (nom lucide)</label>
+              <label className="field-label">Icône (nom lucide)</label>
               <input
                 value={form.icon}
                 onChange={e => setForm(f => ({ ...f, icon: e.target.value }))}
@@ -145,7 +145,7 @@ export default function AdminServicesPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-steel mb-1">Ordre d'affichage</label>
+              <label className="field-label">Ordre d'affichage</label>
               <input
                 type="number"
                 min={0}
@@ -175,7 +175,7 @@ export default function AdminServicesPage() {
           <thead>
             <tr className="bg-[#F4F6F9] border-b border-navy/8">
               {['Ordre', 'Titre', 'Slug', 'Icône', 'Statut', 'Actions'].map(h => (
-                <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">{h}</th>
+                <th key={h} className="admin-th">{h}</th>
               ))}
             </tr>
           </thead>
@@ -200,8 +200,8 @@ export default function AdminServicesPage() {
                   <td className="px-4 py-3 text-steel text-xs font-mono">{s.slug}</td>
                   <td className="px-4 py-3 text-steel text-xs">{s.icon || '—'}</td>
                   <td className="px-4 py-3">
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${
-                      s.isActive ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'
+                    <span className={`admin-badge ${
+                      s.isActive ? 'bg-emerald-50 text-emerald-700' : 'bg-gray-100 text-gray-500'
                     }`}>
                       {s.isActive ? 'Actif' : 'Inactif'}
                     </span>

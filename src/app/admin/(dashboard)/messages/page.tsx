@@ -35,8 +35,8 @@ export default function AdminMessagesPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="font-display font-bold text-navy text-lg uppercase tracking-wide">Messages</h2>
-        <p className="text-steel text-xs mt-0.5">{meta?.total ?? 0} message(s)</p>
+        <h2 className="font-display font-bold text-navy text-xl uppercase tracking-wide">Messages</h2>
+        <p className="admin-count">{meta?.total ?? 0} message(s)</p>
       </div>
 
       <div className="bg-white rounded-sm shadow-sm border border-navy/5 overflow-hidden">
@@ -44,7 +44,7 @@ export default function AdminMessagesPage() {
           <thead>
             <tr className="bg-[#F4F6F9] border-b border-navy/8">
               {['', 'Nom', 'Email', 'Sujet', 'Date'].map(h => (
-                <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-steel uppercase tracking-wider">{h}</th>
+                <th key={h} className="admin-th">{h}</th>
               ))}
             </tr>
           </thead>
@@ -110,10 +110,10 @@ export default function AdminMessagesPage() {
             </div>
             <div className="p-5 space-y-3">
               <div className="grid grid-cols-2 gap-3 text-xs">
-                <div><span className="text-steel uppercase tracking-wider">De : </span><span className="text-navy font-medium">{selected.fullName}</span></div>
-                <div><span className="text-steel uppercase tracking-wider">Email : </span><a href={`mailto:${selected.email}`} className="text-brand-orange">{selected.email}</a></div>
-                {selected.phone && <div><span className="text-steel uppercase tracking-wider">Tél : </span><span className="text-navy">{selected.phone}</span></div>}
-                <div><span className="text-steel uppercase tracking-wider">Date : </span><span className="text-navy">{formatDate(selected.createdAt)}</span></div>
+                <div><span className="font-mono text-[10px] text-steel uppercase tracking-[0.12em]">De : </span><span className="text-navy font-medium">{selected.fullName}</span></div>
+                <div><span className="font-mono text-[10px] text-steel uppercase tracking-[0.12em]">Email : </span><a href={`mailto:${selected.email}`} className="text-brand-orange">{selected.email}</a></div>
+                {selected.phone && <div><span className="font-mono text-[10px] text-steel uppercase tracking-[0.12em]">Tél : </span><span className="text-navy">{selected.phone}</span></div>}
+                <div><span className="font-mono text-[10px] text-steel uppercase tracking-[0.12em]">Date : </span><span className="text-navy">{formatDate(selected.createdAt)}</span></div>
               </div>
               <div className="bg-[#F4F6F9] rounded-sm p-4 text-sm text-navy/80 leading-relaxed">
                 {selected.message}
