@@ -35,7 +35,7 @@ const sections = [
     title: 'Vos droits',
     body: [
       'Vous disposez d\'un droit d\'accès, de rectification et de suppression de vos données.',
-      'Pour exercer ces droits, écrivez à contact@soloma.sn.',
+      'Pour exercer ces droits, écrivez à contact@solomasuarl.sn.',
     ],
   },
 ];

@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: 'Contact' };
 const infos = [
   { icon: MapPin, label: 'Adresse', value: 'Dakar, Sénégal' },
   { icon: Phone, label: 'Téléphone', value: '+221 XX XXX XX XX', href: 'tel:+221XXXXXXXXX' },
-  { icon: Mail, label: 'Email', value: 'contact@soloma.sn', href: 'mailto:contact@soloma.sn' },
+  { icon: Mail, label: 'Email', value: 'contact@solomasuarl.sn', href: 'mailto:contact@solomasuarl.sn' },
   { icon: MessageCircle, label: 'WhatsApp', value: 'Disponible 24h/24', href: '#' },
   { icon: Clock, label: 'Horaires', value: 'Lun–Sam : 8h–18h' },
 ];

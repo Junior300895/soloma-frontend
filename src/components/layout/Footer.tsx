@@ -111,7 +111,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-white/50">
                 <Mail size={14} className="text-brand-orange shrink-0" />
-                <a href="mailto:contact@soloma.sn" className="hover:text-brand-orange transition-colors">contact@soloma.sn</a>
+                <a href="mailto:contact@solomasuarl.sn" className="hover:text-brand-orange transition-colors">contact@solomasuarl.sn</a>
               </div>
               <div className="flex items-center gap-2 text-sm text-white/50">
                 <MessageCircle size={14} className="text-brand-orange shrink-0" />

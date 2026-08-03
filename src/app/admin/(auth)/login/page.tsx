@@ -51,7 +51,7 @@ export default function LoginPage() {
               <input
                 {...register('email')}
                 type="email"
-                placeholder="admin@soloma.sn"
+                placeholder="admin@solomasuarl.sn"
                 className="w-full bg-navy border border-white/10 text-white placeholder:text-white/25
                            pl-9 pr-4 py-3 rounded-sm text-sm focus:outline-none focus:border-brand-orange
                            transition-colors"

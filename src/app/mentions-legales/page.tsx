@@ -10,7 +10,7 @@ const sections = [
       'SOLOMA SUARL — Société Unipersonnelle à Responsabilité Limitée.',
       'Siège social : Dakar, Sénégal.',
       'NINEA : [à compléter] · Registre du commerce : [à compléter].',
-      'Contact : contact@soloma.sn · +221 XX XXX XX XX.',
+      'Contact : contact@solomasuarl.sn · +221 XX XXX XX XX.',
     ],
   },
   {
